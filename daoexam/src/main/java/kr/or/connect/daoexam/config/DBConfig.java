@@ -27,3 +27,4 @@ public class DBConfig {
 
     }
 }
+//DBConfig-> datasource, transaction manager object생성
