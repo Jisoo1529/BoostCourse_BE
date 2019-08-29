@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-${value1} + ${value2 } = ${result}
+${value1} + ${value2} = ${result}
 </body>
 </html>
