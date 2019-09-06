@@ -16,17 +16,17 @@
 
 	<c:forEach items="${list}" var="guestbook">
 
-${guestbook.id }<br>
-${guestbook.name }<br>
-${guestbook.content }<br>
-${guestbook.regdate }<br>
+		${guestbook.id }<br>
+		${guestbook.name }<br>
+		${guestbook.content }<br>
+		${guestbook.regdate }<br>
 
 	</c:forEach>
 	<br>
 
 	<c:forEach items="${pageStartList}" var="pageIndex" varStatus="status">
 		<a href="list?start=${pageIndex}">${status.index +1 }</a>&nbsp; &nbsp;
-</c:forEach>
+	</c:forEach>
 
 	<br>
 	<br>

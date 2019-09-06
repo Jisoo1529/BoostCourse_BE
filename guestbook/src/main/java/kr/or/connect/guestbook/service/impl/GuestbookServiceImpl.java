@@ -25,7 +25,7 @@ public class GuestbookServiceImpl implements GuestbookService {
 	@Transactional//읽기만 하는 method의 경우에는 이 어노테이션으로 readOnly라는 connection사용.
 	public List<Guestbook> getGuestbooks(Integer start){ 
 		List<Guestbook> list = guestbookDao.selectAll(start, GuestbookService.LIMIT); //limit은 service인터페이스에서 5로 지정해둠. 보여주고 싶은 만큼 설정해면 됨.
-		return null;
+		return list;
 	}
 	
 	@Override

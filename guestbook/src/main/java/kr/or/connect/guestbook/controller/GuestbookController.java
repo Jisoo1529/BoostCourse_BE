@@ -38,6 +38,8 @@ public class GuestbookController {
 			pageStartList.add(i * GuestbookService.LIMIT);
 		}
 		
+		System.out.println(list);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
 		model.addAttribute("pageStartList", pageStartList);
