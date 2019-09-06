@@ -22,13 +22,50 @@ public class GuestbookController {
 	GuestbookService guestbookService;
 	
 	@GetMapping(path="/list")
-	public String list(@RequestParam(name="start",required = false, defaultValue="0")int start, ModelMap model) {
+	public String list(@RequestParam(name="start", required=false, defaultValue="0") int start,
+					   ModelMap model) {
+		
+		/*Cookie 설정
+		 * String value = null;
+		boolean find = false;
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if("count".equals(cookie.getName())) {
+					find = true;
+					value = cookie.getValue();
+				}
+			}
+		}
+		
+      
+		if(!find) {
+			value = "1";
+		}else { // 쿠키를 찾았다면.
+			try {
+				int i = Integer.parseInt(value);
+				value = Integer.toString(++i);
+			}catch(Exception ex) {
+				value = "1";
+			}
+		}
+		
+   
+		Cookie cookie = new Cookie("count", value);
+		cookie.setMaxAge(60 * 60 * 24 * 365); // 1년 동안 유지.
+		cookie.setPath("/"); // / 경로 이하에 모두 쿠키 적용. 
+		response.addCookie(cookie);
+		
+		 */
+		// start로 시작하는 방명록 목록 구하기
 		List<Guestbook> list = guestbookService.getGuestbooks(start);
+		
 		// 전체 페이지수 구하기
 		int count = guestbookService.getCount();
 		int pageCount = count / GuestbookService.LIMIT;
 		if(count % GuestbookService.LIMIT > 0)
 			pageCount++;
+		
 		// 페이지 수만큼 start의 값을 리스트로 저장
 		// 예를 들면 페이지수가 3이면
 		// 0, 5, 10 이렇게 저장된다.
@@ -37,8 +74,6 @@ public class GuestbookController {
 		for(int i = 0; i < pageCount; i++) {
 			pageStartList.add(i * GuestbookService.LIMIT);
 		}
-		
-		System.out.println(list);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);

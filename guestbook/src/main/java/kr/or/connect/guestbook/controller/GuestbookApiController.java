@@ -27,7 +27,7 @@ public class GuestbookApiController {
 	@Autowired
 	GuestbookService guestbookService;
 	
-	@GetMapping 
+	@GetMapping(path="/list")
 	public Map<String, Object> list(@RequestParam(name="start", required=false, defaultValue="0")int start) {
 		
 		List<Guestbook> list = guestbookService.getGuestbooks(start);
@@ -48,7 +48,7 @@ public class GuestbookApiController {
 		map.put("pageStartList", pageStartList);
 		return map;
 	}
-	@PostMapping
+	@PostMapping(path="/write")
 	public Guestbook write(@RequestBody Guestbook guestbook,
 						HttpServletRequest request) {
 		String clientIp = request.getRemoteAddr();

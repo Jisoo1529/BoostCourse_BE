@@ -21,10 +21,17 @@ public class GuestbookServiceImpl implements GuestbookService {
 	@Autowired
 	LogDao logDao;
 	
-	@Override //method수행시 guestbook목록 가져옴. 리스트를 읽고 리턴해줌.
-	@Transactional//읽기만 하는 method의 경우에는 이 어노테이션으로 readOnly라는 connection사용.
-	public List<Guestbook> getGuestbooks(Integer start){ 
-		List<Guestbook> list = guestbookDao.selectAll(start, GuestbookService.LIMIT); //limit은 service인터페이스에서 5로 지정해둠. 보여주고 싶은 만큼 설정해면 됨.
+//	@Override //method수행시 guestbook목록 가져옴. 리스트를 읽고 리턴해줌.
+//	@Transactional//읽기만 하는 method의 경우에는 이 어노테이션으로 readOnly라는 connection사용.
+//	public List<Guestbook> getGuestbooks(Integer start){ 
+//		List<Guestbook> list = guestbookDao.selectAll(start, GuestbookService.LAST); //limit은 service인터페이스에서 5로 지정해둠. 보여주고 싶은 만큼 설정해면 됨.
+//		return list;
+//	}
+	
+	@Override
+	@Transactional
+	public List<Guestbook> getGuestbooks(Integer start) {
+		List<Guestbook> list = guestbookDao.selectAll(start, GuestbookService.LIMIT);
 		return list;
 	}
 	
