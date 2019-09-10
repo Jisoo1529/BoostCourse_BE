@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.or.connect.guestbook.argumentresolver.HeaderInfo;
 import kr.or.connect.guestbook.dto.Guestbook;
 import kr.or.connect.guestbook.service.GuestbookService;
 
@@ -30,7 +31,8 @@ public class GuestbookController {
 	public String list(@RequestParam(name="start", required=false, defaultValue="0") int start,
 					   ModelMap model,
 					   HttpServletRequest request, 	
-					   HttpServletResponse response){	
+					   HttpServletResponse response,
+					   HeaderInfo headerinfo){	
 		//Cookie 설정
 		String value = null;
 		boolean find = false;
@@ -44,7 +46,9 @@ public class GuestbookController {
 				}
 			}
 		}
-		
+		System.out.println("-----------------------------------------------------");
+		System.out.println(headerinfo.get("user-agent"));
+		System.out.println("-----------------------------------------------------");
       
 		if(!find) {
 			value = "1";//find는 첫요청시 false상태이므로 true로 변경함.

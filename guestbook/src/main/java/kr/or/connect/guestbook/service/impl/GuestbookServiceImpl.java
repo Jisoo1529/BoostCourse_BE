@@ -71,4 +71,4 @@ public class GuestbookServiceImpl implements GuestbookService {
 	public int getCount() {
 		return guestbookDao.selectCount();
 	}
-}
+} 
